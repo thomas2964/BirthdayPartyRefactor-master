@@ -7,32 +7,64 @@ public class App {
 
     public static void main(String[] args) {
 
-         //Place birthday party orders THOMAS THOMAS
-         order("red", "mylar", "4", "chocolate", "chocolate", "circle", "large", "brown" );
-         order("blue", "latex", "7", "Vanilla", "chocelate", "square", "med", "brown" );
-         order("yellow", "mylar", "4", "vanilla", "vanilla", "square", "small", "yellow" );
+        App app = new App();
+
+        //Place birthday party orders
+        app.birthdayPartyPurchase();
 
     }
 
-    private static void order(String balloonColor, String material, String number, String flavor, String frostingFlavor, String shape, String size, String cakeColor){
+    public int birthdayPartyPurchase() {
+        int numOrder = 0;
 
-        orderBalloons(balloonColor, material, number);
+        /* Without Builder Pattern for Cake
+        Balloon balloon = new Balloon(BalloonColor.RED, BalloonMaterial.MYLAR, 4);
+        balloon.orderBalloon();
+        Cake cake = new Cake(CakeFlavor.CHOCOLATE, CakeFrostingFlavor.CHOCOLATE, CakeShape.CIRCLE, CakeSize.LARGE, CakeColor.BROWN);
+        cake.orderCake();
+        ++numOrder;
 
-        orderCake(frostingFlavor, flavor, shape, size, cakeColor);
+        Balloon balloon2 = new Balloon(BalloonColor.BLUE, BalloonMaterial.LATEX, 7);
+        balloon2.orderBalloon();
+        Cake cake2 = new Cake(CakeFlavor.VANILLA, CakeFrostingFlavor.CHOCOLATE, CakeShape.SQUARE, CakeSize.MEDIUM, CakeColor.BROWN);
+        cake2.orderCake();
+        ++numOrder;
+
+        Balloon balloon3 = new Balloon(BalloonColor.YELLOW, BalloonMaterial.MYLAR, 4);
+        balloon3.orderBalloon();
+        Cake cake3 = new Cake(CakeFlavor.VANILLA, CakeFrostingFlavor.VANILLA, CakeShape.SQUARE, CakeSize.SMALL, CakeColor.YELLOW);
+        cake3.orderCake();
+        ++numOrder;
+        */
+
+        Balloon balloon = new Balloon(BalloonColor.RED, BalloonMaterial.MYLAR, 4);
+        balloon.orderBalloon();
+
+        // With Builder Pattern for Cake
+        Cake cake = Cake.Builder.newInstance().setFlavor(CakeFlavor.CHOCOLATE).
+                setFrostingFlavor(CakeFrostingFlavor.CHOCOLATE).setShape(CakeShape.CIRCLE)
+                .setSize(CakeSize.LARGE).setColor(CakeColor.BROWN).build();
+        cake.orderCake();
+        ++numOrder;
+
+        Balloon balloon2 = new Balloon(BalloonColor.BLUE, BalloonMaterial.LATEX, 7);
+        balloon2.orderBalloon();
+
+        Cake cake2 = Cake.Builder.newInstance().setFlavor(CakeFlavor.VANILLA).
+                setFrostingFlavor(CakeFrostingFlavor.CHOCOLATE).setShape(CakeShape.SQUARE)
+                .setSize(CakeSize.MEDIUM).setColor(CakeColor.BROWN).build();
+        cake2.orderCake();
+        ++numOrder;
+
+        Balloon balloon3 = new Balloon(BalloonColor.YELLOW, BalloonMaterial.MYLAR, 4);
+        balloon3.orderBalloon();
+
+        Cake cake3 = Cake.Builder.newInstance().setFlavor(CakeFlavor.VANILLA).
+                setFrostingFlavor(CakeFrostingFlavor.VANILLA).setShape(CakeShape.SQUARE)
+                .setSize(CakeSize.SMALL).setColor(CakeColor.YELLOW).build();
+        cake3.orderCake();
+        ++numOrder;
+
+        return numOrder;
     }
-
-    private static void orderBalloons(String balloonColor, String material, String number){
-
-        //for the purposes of this exercise, pretend this method works and adds balloons to the order
-        System.out.println("Balloons ordered; " + balloonColor + ", " + material  + ", " + number);
-
-    }
-
-    private static void orderCake(String flavor, String frostingFlavor, String shape, String size, String cakeColor){
-
-        //for the purposes of this exercise, pretend that this method adds a cake to the order
-        System.out.println("cake ordered; " + flavor + ", " + frostingFlavor  + ", " + shape + ", " + size + ", " + cakeColor);
-
-    }
-
 }
