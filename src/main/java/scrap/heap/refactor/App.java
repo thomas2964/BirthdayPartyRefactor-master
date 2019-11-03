@@ -7,7 +7,7 @@ public class App {
 
     public static void main(String[] args) {
 
-         //Place birthday party orders
+         //Place birthday party orders THOMAS THOMAS
          order("red", "mylar", "4", "chocolate", "chocolate", "circle", "large", "brown" );
          order("blue", "latex", "7", "Vanilla", "chocelate", "square", "med", "brown" );
          order("yellow", "mylar", "4", "vanilla", "vanilla", "square", "small", "yellow" );
